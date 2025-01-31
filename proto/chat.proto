@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package chat;
+
+// Message format
+message ChatMessage {
+  string user = 1;
+  string message = 2;
+  string timestamp = 3;
+}
+
+// Request for fetching messages
+message Empty {}
+
+// Response for multiple messages
+message ChatMessages {
+  repeated ChatMessage messages = 1;
+}
+
+// Service definition
+service ChatService {
+  rpc SendMessage (ChatMessage) returns (Empty);
+  rpc GetMessages (Empty) returns (ChatMessages);
+}
